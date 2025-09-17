@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prank Game - Page 3</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #a29bfe; }
+    h1 { margin-top: 20px; }
+    .grid { display: grid; grid-template-columns: repeat(2, 120px); grid-gap: 15px; justify-content: center; margin-top: 40px; }
+    .card {
+      width: 120px; height: 120px; background: #2d3436;
+      color: white; display: flex; justify-content: center; align-items: center;
+      font-size: 24px; cursor: pointer; border-radius: 10px;
+    }
+    .matched { background: #00b894 !important; }
+    body {
+     background: url("yash3.jpg") no-repeat center center fixed;
+     background-size: cover; /* makes it cover full screen */
+   }
+  </style>
+</head>
+<body>
+  <h1>Memory Match 🧠</h1>
+  <p>Match all pairs to continue.</p>
+  <div class="grid" id="grid"></div>
+
+  <script>
+    const cards = ["ME ","EK ","CHHINAR","HU"];
+    let flipped = [];
+    let matched = 0;
+
+    const grid = document.getElementById("grid");
+    cards.sort(() => 0.5 - Math.random());
+    cards.forEach((emoji, i) => {
+      let card = document.createElement("div");
+      card.className = "card";
+      card.dataset.emoji = emoji;
+      card.innerText = "?";
+      card.addEventListener("click", () => flip(card));
+      grid.appendChild(card);
+    });
+
+    function flip(card){
+      if(card.innerText !== "?") return;
+      card.innerText = card.dataset.emoji;
+      flipped.push(card);
+
+      if(flipped.length === 2){
+        if(flipped[0].dataset.emoji === flipped[1].dataset.emoji){
+          flipped.forEach(c => c.classList.add("matched"));
+          matched++;
+          if(matched === cards.length/2){
+            setTimeout(()=>{ 
+              alert("All matched! 🚀"); 
+              window.location.href="page4.html"; 
+            },500);
+          }
+        } else {
+          setTimeout(()=> flipped.forEach(c => c.innerText = "?"), 700);
+        }
+        flipped = [];
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prank Game - Page 2</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #ffeaa7; }
+    h1 { margin-top: 40px; }
+    input { padding: 10px; margin: 10px; border-radius: 5px; border: 1px solid #333; }
+    button { padding: 10px 20px; background: #0984e3; color: white; border: none; border-radius: 5px; cursor: pointer; }
+
+    button:hover { background: #f02b2b; }   
+    body {
+  background: url("yash2.jpg") no-repeat center center fixed;
+  background-size: cover; /* makes it cover full screen */
+}
+p {
+  font-size: 60px; 
+  color: #fa0606;
+  text-decoration-style: dashed;
+} 
+  </style>
+</head>
+<body>
+  <h1>Riddle Time 🤔</h1>
+  <p> <b> <i> Jo bandaa background me h vo chutiya h or iski gand moti h or ye marata h </i> </b> </p>
+  <input id="answer" placeholder="Your Answer">
+  <button onclick="checkAnswer()">Submit</button>
+
+  <script>
+    function checkAnswer() {
+      let ans = document.getElementById("answer").value.toLowerCase().trim();
+      if(ans === "YES" || ans === "HAAN" || ans === "HAA" || ans === "H") {
+        alert("Correct! 🎉");
+        window.location.href = "fun3.html";
+      } else {
+        alert("Wrong answer! Try again.");
+      }
+    }
+  </script>
+</body>
+</html>

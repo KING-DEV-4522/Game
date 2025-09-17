@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prank Game - Page 1</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #74b9ff, #a29bfe);
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      margin-top: 30px;
+      color: white;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+    }
+    .friend-img {
+      margin-top: 20px;
+      border: 5px solid white;
+      border-radius: 20px;
+      max-width: 250px;
+      width: 70%;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+    }
+    .btn {
+      padding: 15px 35px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin: 20px;
+      transition: transform 0.2s, background 0.3s;
+    }
+    #catchBtn {
+      position: absolute;
+      background: #ff4757;
+      color: white;
+    }
+    #catchBtn:hover {
+      transform: scale(1.1);
+      background: #ff6b81;
+    }
+    #goBtn {
+      background: #00b894;
+      color: white;
+      position: relative;
+      z-index: 5;
+    }
+    #goBtn:hover {
+      transform: scale(1.1);
+      background: #55efc4;
+    }
+  </style>
+</head>
+<body>
+  <h1> KYA ME EK BHADWA HU </h1>
+  <img src="yash3.jpg" alt="Friend" class="friend-img"> <!-- Replace with your friend's image file -->
+  
+  <!-- Moving Button -->
+  <button id="catchBtn" class="btn">NAH ME NAHI HU <-</button>
+
+  <!-- Normal Button -->
+  <br><br><br><br>
+  <button id="goBtn" class="btn"> Ha me ek bhadwa hu -></button>
+
+  <script>
+    const btn = document.getElementById("catchBtn");
+    btn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - 120);
+      const y = Math.random() * (window.innerHeight - 120);
+      btn.style.left = x + "px";
+      btn.style.top = y + "px";
+    });
+
+    btn.addEventListener("click", () => {
+      alert("Nice catch! Now press 'Let’s Go' 👇");
+    });
+
+    document.getElementById("goBtn").addEventListener("click", () => {
+      window.location.href = "fun2.html"; 
+    });
+  </script>
+</body>
+</html>
+
