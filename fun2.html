@@ -30,7 +30,8 @@ p {
 
   <script>
     function checkAnswer() {
-      let ans = document.getElementById("answer").value.toLowerCase().trim();
+      let ans = document.getElementById('answer').value.toLowerCase().trim();
+      console.log(ans);
       if(ans == "yes" || ans === "haan" || ans === "haa" || ans === "h") {
         alert("Correct! 🎉");
         window.location.href = "fun3.html";
@@ -41,3 +42,4 @@ p {
   </script>
 </body>
 </html>
+
