@@ -21,7 +21,7 @@
   </style>
 </head>
 <body>
-  <h1>Memory Match 🧠</h1>
+  <h1>chhinar ki pahchan</h1>
   <p>Match all pairs to continue.</p>
   <div class="grid" id="grid"></div>
 
@@ -35,7 +35,6 @@
     cards.forEach((emoji, i) => {
       let card = document.createElement("div");
       card.className = "card";
-      card.dataset.emoji = emoji;
       card.innerText = "?";
       card.addEventListener("click", () => flip(card));
       grid.appendChild(card);
@@ -43,11 +42,11 @@
 
     function flip(card){
       if(card.innerText !== "?") return;
-      card.innerText = card.dataset.emoji;
+      card.innerText = card.dataset.text;
       flipped.push(card);
 
       if(flipped.length === 2){
-        if(flipped[0].dataset.emoji === flipped[1].dataset.emoji){
+        if(flipped[0].dataset.text === flipped[1].dataset.text){
           flipped.forEach(c => c.classList.add("matched"));
           matched++;
           if(matched === cards.length/2){
@@ -65,4 +64,5 @@
   </script>
 </body>
 </html>
+
 
