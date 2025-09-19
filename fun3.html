@@ -7,7 +7,7 @@
   <style>
     body { font-family: Arial, sans-serif; text-align: center; background: #a29bfe; }
     h1 { margin-top: 20px; }
-    .grid { display: grid; grid-template-columns: repeat(2, 120px); grid-gap: 15px; justify-content: center; margin-top: 40px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 120px); grid-gap: 15px; justify-content: center; margin-top: 40px; }
     .card {
       width: 120px; height: 120px; background: #2d3436;
       color: white; display: flex; justify-content: center; align-items: center;
@@ -16,17 +16,18 @@
     .matched { background: #00b894 !important; }
     body {
      background: url("yash3.jpg") no-repeat center center fixed;
-     background-size: cover; /* makes it cover full screen */
+     background-size: cover;
    }
   </style>
 </head>
 <body>
-  <h1>chhinar ki pahchan</h1>
+  <h1>Memory Match 🧠</h1>
   <p>Match all pairs to continue.</p>
   <div class="grid" id="grid"></div>
 
   <script>
-    const cards = ["ME ","EK ","CHHINAR","HU"];
+    const baseCards = ["ME ","EK ","CHHINAR","HU"];
+    const cards = [...baseCards, ...baseCards]; // Create pairs
     let flipped = [];
     let matched = 0;
 
@@ -35,6 +36,7 @@
     cards.forEach((emoji, i) => {
       let card = document.createElement("div");
       card.className = "card";
+      card.dataset.emoji = emoji;
       card.innerText = "?";
       card.addEventListener("click", () => flip(card));
       grid.appendChild(card);
@@ -42,28 +44,46 @@
 
     function flip(card){
       if(card.innerText !== "?") return;
-      card.innerText = card.dataset.text;
+      if(flipped.length === 2) return; // Prevent flipping more than 2 at once
+      card.innerText = card.dataset.emoji;
       flipped.push(card);
 
       if(flipped.length === 2){
-        if(flipped[0].dataset.text === flipped[1].dataset.text){
+        if(flipped[0].dataset.emoji === flipped[1].dataset.emoji){
           flipped.forEach(c => c.classList.add("matched"));
           matched++;
-          if(matched === cards.length/2){
-            setTimeout(()=>{ 
+          setTimeout(()=> {
+            if(matched === cards.length/2){
               alert("All matched! 🚀"); 
-              window.location.href="fun4.html"; 
-            },500);
-          }
+              checkNextPage();
+            }
+          }, 500);
         } else {
           setTimeout(()=> flipped.forEach(c => c.innerText = "?"), 700);
         }
-        flipped = [];
+        setTimeout(()=>{ flipped = []; }, 700);
       }
+    }
+
+    // ✅ Check if fun4.html exists before redirecting
+    function checkNextPage() {
+      fetch("fun4.html", { method: "HEAD" })
+        .then(res => {
+          if (res.ok) {
+            window.location.href = "fun4.html";
+          } else {
+            alert("⚠️ fun4.html not found! Please make sure it exists in the same folder.");
+          }
+        })
+        .catch(() => {
+          alert("⚠️ Could not load fun4.html. Maybe it’s missing?");
+        });
     }
   </script>
 </body>
 </html>
+
+
 
 
 
